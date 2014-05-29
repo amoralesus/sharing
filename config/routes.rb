@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :projects
+  resources :projects do
+    member do
+      post 'share'
+    end
+  end
 
   resource :sessions, :only => [:create]
   get 'sign_in' => 'sessions#new'

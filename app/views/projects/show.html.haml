@@ -4,6 +4,19 @@
   %b Name:
   = @project.name
 
+  %br
+
+  %b Share with:
+  = form_tag share_project_path(@project), :method => :post do
+    = select_tag 'user_id', options_for_select(User.all.map {|user| [user.full_name, user.id]}), :include_blank => true
+    = submit_tag 'Share'
+
+  %b
+    Shared with:
+    = @project.users.map(&:full_name).join(", ")
+
+
+
 = link_to 'Edit', edit_project_path(@project)
 \|
 = link_to 'Back', projects_path

@@ -104,6 +104,15 @@ describe ProjectsController do
     end
   end
 
+  describe "POST share" do
+    it "should share the project with a user" do
+      project = Fabricate(:project, :user => user)
+      other_user = Fabricate(:user)
+      post :share, :id => project.id, :user_id => other_user.id
+      expect(response).to redirect_to(project_path(project))
+    end
+  end
+
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested project" do

@@ -7,4 +7,5 @@ class Project < ActiveRecord::Base
   def share_with(other_user)
     self.users << other_user
   end
+
 end
